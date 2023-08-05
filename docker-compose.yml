@@ -1,0 +1,22 @@
+version: "3"
+services:
+  chatbot-app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/opt/blabberbandit/backend
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  mongodb_data:
