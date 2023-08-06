@@ -3,9 +3,7 @@ dotenv.config();
 import mongoose from 'mongoose';
 
 async function connectDb() {
-  console.log('connectDb');
   const DB_Host = process.env.DB_HOST;
-  console.log('DB_Host', DB_Host);
 
   try {
     await mongoose.connect(`mongodb://${DB_Host}:27017`, { dbName: 'chatapp' });

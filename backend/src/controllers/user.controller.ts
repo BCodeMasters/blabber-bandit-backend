@@ -9,7 +9,6 @@ export class UserController {
   async register(req: Request, res: Response, next: NextFunction) {
     try {
       const { username, password, email } = req.body;
-      console.log('register', username, password, email);
       const user = await this._service.createUser(username, password, email);
       res.json(user);
     } catch (error) {
