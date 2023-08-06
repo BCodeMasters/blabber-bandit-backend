@@ -23,7 +23,7 @@ function initServer() {
       });
     })
     .catch((err) => {
-      console.error('Failed to connect to DB', err);
+      console.error('Failed to connect to Db', err);
     });
   app.use(express.urlencoded({ extended: true }));
 
