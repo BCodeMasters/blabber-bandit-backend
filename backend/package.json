@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "@types/dotenv": "^8.2.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.17.1",
     "express-http-context": "^1.2.4",
     "import": "^0.0.6",

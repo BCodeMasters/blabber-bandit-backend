@@ -1,10 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import mongoose from 'mongoose';
 
 async function connectDb() {
   console.log('connectDb');
+  const DB_Host = process.env.DB_HOST;
+  console.log('DB_Host', DB_Host);
 
   try {
-    await mongoose.connect('mongodb://mongo:27017', { dbName: 'chatapp' });
+    await mongoose.connect(`mongodb://${DB_Host}:27017`, { dbName: 'chatapp' });
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Could not connect to MongoDB', error);
@@ -22,4 +26,5 @@ mongoose.connection.on('disconnected', () => {
     connectDb();
   }, 2000);
 });
+
 export { connectDb };
