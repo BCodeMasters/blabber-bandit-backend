@@ -14,6 +14,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Sync code
+      uses: AEnterprise/rsync-deploy@v1.0
+      with:
+        switches: -avzr --delete
+        ssh_key: ${{ secrets.BACKENDSECRET }}
+        server: ${{ secrets.USER }}@${{ secrets.HOST }}
+        source: .
+        target: /home/ec2-user/blabber-bandit-backend
+
     - name: Execute commands over ssh
       uses: appleboy/ssh-action@master
       with:
@@ -22,10 +31,8 @@ jobs:
         key: ${{ secrets.BACKENDSECRET }}
         script: |
           cd /home/ec2-user/blabber-bandit-backend
-          git pull
           docker-compose -f docker-compose.prod.yml build
           docker-compose -f docker-compose.prod.yml up -d
-
     - name: Cleanup
       if: always()
       run: docker-compose -f docker-compose.prod.yml down
