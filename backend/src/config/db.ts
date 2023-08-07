@@ -4,6 +4,7 @@ async function connectDb() {
   console.log('connectDb');
 
   try {
+    console.log('Connecting to MongoDB... test jira');
     await mongoose.connect('mongodb://mongo:27017', { dbName: 'chatapp' });
     console.log('Connected to MongoDB');
   } catch (error) {
